@@ -1,3 +1,6 @@
+from typing import Any
+
+
 class Vacancy:
     """Класс для работы с вакансиями."""
 
@@ -5,7 +8,7 @@ class Vacancy:
 
     vacancy_id = 1
 
-    def __init__(self, name: str, company: str, salary: dict, url: str, description: str) -> None:
+    def __init__(self, name: str, company: str, salary: Any, url: str, description: str) -> None:
         self.id = Vacancy.vacancy_id
         self.name = name
         self.company = company
@@ -51,10 +54,10 @@ class Vacancy:
         local_salary_to = 0
 
         if isinstance(salary, dict):
-            if isinstance(salary.get('from'), (int, float)):
+            if isinstance(salary.get('from'), (int)):
                 local_salary_from = salary.get('from', 0)
 
-            if isinstance(salary.get('to'), (int, float)):
+            if isinstance(salary.get('to'), (int)):
                 local_salary_to = salary.get('to', 0)
 
         if local_salary_from > 0 and local_salary_to > 0:
@@ -71,13 +74,13 @@ class Vacancy:
     @url.setter
     def url(self, url: str) -> None:
         """Метод setter с валидацией ссылки на вакансию"""
-        if isinstance(url, str) or url.startswith("http"):
+        if isinstance(url, str) and url.startswith("http"):
             self._url = url
         else:
             self._url = "Ссылка отсутствует"
 
     @property
-    def description(self) ->str:
+    def description(self) -> str:
         return self._description
 
     @description.setter
@@ -90,32 +93,32 @@ class Vacancy:
 
     # ===========Группа магических методов сравнения вакансий============
 
-    def __lt__(self, other: object):
+    def __lt__(self, other: object) -> bool:
         if not isinstance(other, Vacancy):
             return NotImplemented
         return self.salary < other.salary
 
-    def __le__(self, other):
+    def __le__(self, other: object) -> bool:
         if not isinstance(other, Vacancy):
             return NotImplemented
         return self.salary <= other.salary
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, Vacancy):
             return NotImplemented
         return self.salary == other.salary
 
-    def __ne__(self, other):
+    def __ne__(self, other: object) -> bool:
         if not isinstance(other, Vacancy):
             return NotImplemented
         return self.salary != other.salary
 
-    def __gt__(self, other):
+    def __gt__(self, other: object) -> bool:
         if not isinstance(other, Vacancy):
             return NotImplemented
         return self.salary > other.salary
 
-    def __ge__(self, other):
+    def __ge__(self, other: object) -> bool:
         if not isinstance(other, Vacancy):
             return NotImplemented
         return self.salary >= other.salary
@@ -155,4 +158,5 @@ class Vacancy:
 # for v in _list:
 #     print(v)
 # print(
-#     f"Вакансия(id='{v.id}', название='{v.name}', работодатель='{v.company}', зарплата={v.salary}, ссылка='{v._url}', описание='{v._description}')")
+#     f"Вакансия(id='{v.id}', название='{v.name}', работодатель='{v.company}', зарплата={v.salary}, ссылка='{v._url}',
+#     описание='{v._description}')")

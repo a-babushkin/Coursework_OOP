@@ -1,5 +1,6 @@
 import json
 import os
+from typing import Any
 
 from src.base_file_handler import FileHandler
 
@@ -24,7 +25,7 @@ class JSONFileHandler(FileHandler):
             with open(self.path_to_file, mode='w', encoding="UTF-8") as fl:
                 json.dump(vacancies, fl, ensure_ascii=False, indent=4)
 
-    def get_vacancies(self, query: str = '') -> list[dict]:
+    def get_vacancies(self, query: str = '') -> Any:
         """Метод для получения вакансии из файла по запросу в описании"""
         if not os.path.exists(self.path_to_file):
             return []

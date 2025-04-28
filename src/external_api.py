@@ -1,4 +1,6 @@
 import os
+from typing import AnyStr, Any
+
 import requests
 from dotenv import load_dotenv
 
@@ -9,12 +11,12 @@ from src.connect_api_exception import ConnectAPIError
 class HeadHunterAPI(JobWithAPI):
     """Класс для работы с Head Hunter API."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         load_dotenv()
         self.__url = os.getenv("BASE_URL")
         self.__headers = {'User-Agent': 'HH-User-Agent'}
         self.__params = {'text': '', 'page': 0, 'per_page': 10}  # , 'only_with_salary': True
-        self.vacancies = []
+        self.vacancies: list[dict] = []
         self.__session = None
 
     def _connect(self) -> None:
@@ -25,7 +27,7 @@ class HeadHunterAPI(JobWithAPI):
             raise ConnectAPIError(f"Соединение не установлено. Код ошибки: {response.status_code}")
         print("Соединение с API установлено.")
 
-    def get_vacancies(self, query: str, pages: int) -> list:
+    def get_vacancies(self, query: str, pages: int) -> Any:
         """Получаем вакансии по запросу из API и возвращаем сырой список вакансий."""
         try:
             self._connect()

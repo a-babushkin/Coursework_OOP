@@ -45,10 +45,6 @@ def entry_point():
         elif selection == '2':
             n = int(input("Введите количество вакансий для получения по зарплате: "))
             vacancies = file_handler.get_vacancies()
-            # print(vacancies)
-            # [print(v) for v in sorted(vacancies, reverse=True)]
-            # quit()
-
             sorted_vacancies = sorted(vacancies, key=lambda x: x.get('salary', 0), reverse=True)[:n]
             if sorted_vacancies:
                 for v in sorted_vacancies:
@@ -68,12 +64,15 @@ def entry_point():
         elif selection == '4':
             name = input("Введите название вакансии: ")
             company = input("Введите название компании: ")
-            salary_from, salary_to = input("Введите зарплату от и до в формате (3000 5000): ").split()
+            # salary_from, salary_to = input("Введите зарплату от и до в формате (3000 5000): ").split()
+            # salary = {'from': int(salary_from), 'to': int(salary_to)}
+            salary_from = input("Введите минимальную зарплату: ")
+            salary_to = input("Введите максимальную зарплату: ")
+            salary = {'from': int(salary_from) if salary_from and int(salary_from) > 0 else 0,
+                      'to': int(salary_to) if salary_to and int(salary_to) > 0 else 0}
             url = input("Введите ссылку на вакансию: ")
             description = input("Введите описание вакансии")
-            salary = {'from': int(salary_from), 'to': int(salary_to)}
-            # print(salary)
-            # quit()
+
             vacancy = Vacancy(name=name, company=company, salary=salary, url=url, description=description)
             file_handler.add_vacancy(vacancy.to_dict())
             print("Вакансия добавлена в файл.")
