@@ -4,7 +4,7 @@ from typing import Any
 class Vacancy:
     """Класс для работы с вакансиями."""
 
-    __slots__ = ('id', '_name', '_company', '_salary', '_url', '_description')
+    __slots__ = ("id", "_name", "_company", "_salary", "_url", "_description")
 
     vacancy_id = 1
 
@@ -54,11 +54,11 @@ class Vacancy:
         local_salary_to = 0
 
         if isinstance(salary, dict):
-            if isinstance(salary.get('from'), (int)):
-                local_salary_from = salary.get('from', 0)
+            if isinstance(salary.get("from"), (int)):
+                local_salary_from = salary.get("from", 0)
 
-            if isinstance(salary.get('to'), (int)):
-                local_salary_to = salary.get('to', 0)
+            if isinstance(salary.get("to"), (int)):
+                local_salary_to = salary.get("to", 0)
 
         if local_salary_from > 0 and local_salary_to > 0:
             self._salary = round((local_salary_from + local_salary_to) / 2)
@@ -126,15 +126,17 @@ class Vacancy:
     # ==============================================
 
     def __str__(self) -> str:
-        return (f"Вакансия(id='{self.id}', название='{self.name}', работодатель='{self.company}', "
-                f"зарплата={self.salary}, ссылка='{self.url}', описание='{self.description}')")
+        return (
+            f"Вакансия(id='{self.id}', название='{self.name}', работодатель='{self.company}', "
+            f"зарплата={self.salary}, ссылка='{self.url}', описание='{self.description}')"
+        )
 
     def to_dict(self) -> dict:
         return {
-            'id': self.id,
-            'name': self.name,
-            'company': self.company,
-            'salary': self.salary,
-            'url': self.url,
-            'description': self.description
+            "id": self.id,
+            "name": self.name,
+            "company": self.company,
+            "salary": self.salary,
+            "url": self.url,
+            "description": self.description,
         }
