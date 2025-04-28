@@ -53,7 +53,7 @@ class TestJSONFileHandler(TestCase):
         self.assertEqual(result[0]['id'], 1)
 
     def test_delete_vacancy(self):
-        """Тестируем удаление вакансии."""
+        """Тестируем удаление вакансии по id."""
         vacancies = [{'id': 1, 'name': 'Developer', 'description': 'Разработчик ПО'}]
         self.handler.load_vacancies_to_file(vacancies)
         self.handler.delete_vacancy(1)

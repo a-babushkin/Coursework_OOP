@@ -26,7 +26,7 @@ class JSONFileHandler(FileHandler):
                 json.dump(vacancies, fl, ensure_ascii=False, indent=4)
 
     def get_vacancies(self, query: str = '') -> Any:
-        """Метод для получения вакансии из файла по запросу в описании"""
+        """Метод для получения вакансий из файла по запросу в описании"""
         if not os.path.exists(self.path_to_file):
             return []
         with open(self.path_to_file, mode='r', encoding='UTF-8') as file:

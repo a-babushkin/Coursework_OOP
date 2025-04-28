@@ -28,6 +28,9 @@ class TestVacancy(TestCase):
         self.vacancy_2.salary = {'from': 0, 'to': 30000}
         self.assertEqual(self.vacancy_2.salary, 30000)
 
+        self.vacancy_2.salary = {'from': 30000, 'to': 0}
+        self.assertEqual(self.vacancy_2.salary, 30000)
+
         self.vacancy_2.salary = {'from': None, 'to': None}
         self.assertEqual(self.vacancy_2.salary, 0)
 
@@ -74,3 +77,9 @@ class TestVacancy(TestCase):
             'description': 'Разработчик ПО'
         }
         self.assertEqual(self.vacancy_1.to_dict(), expected_dict)
+
+    def test_vacancy_str(self):
+        """Тестирует метод __str__ ."""
+        expected_string = ("Вакансия(id='1', название='Developer', работодатель='Company A', зарплата=70000, "
+                           "ссылка='https://example.com', описание='Разработчик ПО')")
+        self.assertEqual(str(self.vacancy_1), expected_string)

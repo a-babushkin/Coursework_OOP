@@ -26,7 +26,7 @@ class Vacancy:
     @name.setter
     def name(self, name: str) -> None:
         """Метод setter с валидацией названия вакансии"""
-        if isinstance(name, str) or name:
+        if isinstance(name, str) and name != "":
             self._name = name
         else:
             self._name = "Название отсутствует"
@@ -38,7 +38,7 @@ class Vacancy:
     @company.setter
     def company(self, company: str) -> None:
         """Метод setter с валидацией работодателя"""
-        if isinstance(company, str) or company:
+        if isinstance(company, str) and company != "":
             self._company = company
         else:
             self._company = "Название работодателя отсутствует"
@@ -86,7 +86,7 @@ class Vacancy:
     @description.setter
     def description(self, description: str) -> None:
         """Метод setter с валидацией описания вакансии"""
-        if isinstance(description, str):
+        if isinstance(description, str) and description != "":
             self._description = description
         else:
             self._description = "Описание отсутствует"
@@ -138,25 +138,3 @@ class Vacancy:
             'url': self.url,
             'description': self.description
         }
-
-# if __name__ == '__main__':
-#     v1 = Vacancy('worker', 'BMV', {
-#         "from": 130000,
-#         "to": None,
-#     }, 'https://', '12')
-#     v2 = Vacancy('coworker', 'Audi', {
-#         "from": 570000,
-#         "to": None,
-#     }, 'https://', '13')
-#     v3 = Vacancy('engineer', 'BMV', {
-#         "from": 7000,
-#         "to": 90000,
-#     }, 'https://', '14')
-#     _list = [v1, v2, v3]
-#     # print(_list)
-#     [print(v) for v in sorted(_list, reverse=True)]
-# for v in _list:
-#     print(v)
-# print(
-#     f"Вакансия(id='{v.id}', название='{v.name}', работодатель='{v.company}', зарплата={v.salary}, ссылка='{v._url}',
-#     описание='{v._description}')")

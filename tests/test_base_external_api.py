@@ -15,7 +15,6 @@ class MockJobWithAPI(JobWithAPI):
         if not self.connected:
             raise ConnectionError("Не установлено соединение с API.")
 
-        # Простейшая имитация возвращаемых данных
         return [
             {"id": 1, "name": "Developer", "description": "Разработчик ПО"},
             {"id": 2, "name": "Tester", "description": "Тестировщик ПО"},

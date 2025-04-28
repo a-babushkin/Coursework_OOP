@@ -21,7 +21,7 @@ def entry_point():
         if selection == '1':
             hh_api = HeadHunterAPI()
             query = input("Введите поисковый запрос: ")
-            vacancies_number = int(input("Сколько вакансий по 10 на страницу запросить: "))
+            vacancies_number = int(input("Сколько страниц вакансий по 10 на страницу запросить: "))
             hh_api.get_vacancies(query, vacancies_number)
             vacancies_obj = [
                 Vacancy(
