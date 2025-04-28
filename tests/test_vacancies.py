@@ -82,4 +82,5 @@ class TestVacancy(TestCase):
         """Тестирует метод __str__ ."""
         expected_string = ("Вакансия(id='1', название='Developer', работодатель='Company A', зарплата=70000, "
                            "ссылка='https://example.com', описание='Разработчик ПО')")
+        self.vacancy_1.id = 1
         self.assertEqual(str(self.vacancy_1), expected_string)
